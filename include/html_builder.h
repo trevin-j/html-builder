@@ -11,12 +11,11 @@ namespace HTML
 	class Element
 	{
 	public:
-		/// <summary>
-		/// Construct a tag element.
-		/// </summary>
-		/// <param name="requiresClosingTag">Bool representing if the tag has both opening and closing tags.</param>
-		/// <param name="isInline">Bool representing if the tag is inline or on its own line. This is only for formatting, and doesn't affect the HTML syntax.</param>
-		/// <param name="tagName">The type of tag.</param>
+		// Construct a tag element.
+		// Arguments:
+		// 		requiresClosingTag: Bool representing if the tag has both opening and closing tags.
+		// 		isInline: Bool representing if the tag is inline or on its own line. This is only for formatting, and doesn't affect the HTML syntax.
+		// 		tagName: The type of tag.
 		Element(bool requiresClosingTag, bool isInline, const std::string& tagName)
 		{
 			this->requiresClosingTag = requiresClosingTag;
@@ -26,12 +25,11 @@ namespace HTML
 			elementType = 0;
 		}
 
-		/// <summary>
-		/// Construct an element only of text. No tags.
-		/// This is used for putting text between 2 tags of an element.
-		/// For example, if you have a p tag, and you want to put text between it and the /p tag, you can use this.
-		/// </summary>
-		/// <param name="text">The text.</param>
+		// Construct an element only of text. No tags.
+		// This is used for putting text between 2 tags of an element.
+		// For example, if you have a p tag, and you want to put text between it and the /p tag, you can use this.
+		// Arguments:
+		//		text: The text.
 		Element(const std::string& text)
 		{
 			this->text = text;
@@ -43,13 +41,12 @@ namespace HTML
 		}
 
 
-		/// <summary>
-		/// Add an attribute to the tag. Such as id="chapter-heading".
-		/// If this element is a text element, this method will be ignored.
-		/// </summary>
-		/// <param name="name">The name of the attribute. E.g. id, class, style, etc.</param>
-		/// <param name="value">The value of the attribute. The value that is in quotes in HTML.</param>
-		/// <returns>Returns a reference to this Element, so that methods can be chained.</returns>
+		// Add an attribute to the tag. Such as id="chapter-heading".
+		// If this element is a text element, this method will be ignored.
+		// Arguments:
+		// 		name: The name of the attribute. E.g. id, class, style, etc.
+		// 		value: The value of the attribute. The value that is in quotes in HTML.
+		// Returns a reference to this Element, so that methods can be chained.
 		Element& addAttribute(const std::string& name, const std::string& value)
 		{
 			if (elementType == 1)
@@ -59,11 +56,10 @@ namespace HTML
 			return *this;
 		}
 
-		/// <summary>
-		/// Add a child element to this one. This would be an element within another element, or text within this element.
-		/// </summary>
-		/// <param name="childElement">The child element. Can be text or a tag.</param>
-		/// <returns>A reference to this element, to support method chaining.</returns>
+		// Add a child element to this one. This would be an element within another element, or text within this element.
+		// Arguments:
+		//		childElement: The child element. Can be text or a tag.
+		// Returns a reference to this element, to support method chaining.
 		Element& addChild(const Element& childElement)
 		{
 			if (!requiresClosingTag)
@@ -73,12 +69,10 @@ namespace HTML
 			return *this;
 		}
 
-		/// <summary>
-		/// Recursively get a string representing this element including all its child elements, if applicable.
-		/// </summary>
-		/// <param name="indentLayer">The indentation layer of this element. Used in recursion to get proper indentation.</param>
-		/// <param name="tabStyle">The style of indentation. '\t' is a tab, or you can use any number of spaces. HTMLBuilder default is 2 spaces ("  ").</param>
-		/// <returns>Returns the string. This is before unnessesary whitespace is stripped by HTMLBuilder. If you want to retrieve a properly formatted full HTML document, use HTMLBuilder.toString()</returns>
+		// Recursively get a string representing this element including all its child elements, if applicable.
+		//		indentLayer: The indentation layer of this element. Used in recursion to get proper indentation.
+		// 		tabStyle: The style of indentation. '\t' is a tab, or you can use any number of spaces. HTMLBuilder default is 2 spaces ("  ").
+		// Returns the string. This is before unnessesary whitespace is stripped by HTMLBuilder. If you want to retrieve a properly formatted full HTML document, use HTMLBuilder.toString()
 		std::string getString(int indentLayer, const std::string& tabStyle) const
 		{
 			// In case of bare text element, simply return the text
@@ -128,29 +122,19 @@ namespace HTML
 		}
 
 	private:
-		/// <summary>
-		/// Vector holding all child elements in order.
-		/// </summary>
+		// Vector holding all child elements in order.
 		std::vector<Element> children;
 
-		/// <summary>
-		/// Vector holding all attributes of the tag.
-		/// </summary>
+		// Vector holding all attributes of the tag.		
 		std::vector < std::pair<std::string, std::string>> attributes;
 
-		/// <summary>
-		/// Bool representing if a closing tag is required.
-		/// </summary>
+		// Bool representing if a closing tag is required.		
 		bool requiresClosingTag;
 		
-		/// <summary>
-		/// Bool representing if the tag is inline or on its own line.
-		/// </summary>
+		// Bool representing if the tag is inline or on its own line.
 		bool isInline;
 
-		/// <summary>
-		/// The type of tag.
-		/// </summary>
+		// The type of tag.		
 		std::string tagName;
 		
 		// 0 = tag, 1 = bare text
@@ -160,35 +144,27 @@ namespace HTML
 		std::string text;
 	};
 
-	/// <summary>
-	/// A class used for building HTML documents.
-	/// Add tags and child tags to build the document.
-	/// The document has the doctype tag builtin, as well as the html tags.
-	/// Supply your own head and body tags.
-	/// </summary>
+	// A class used for building HTML documents.
+	// Add tags and child tags to build the document.
+	// The document has the doctype tag builtin, as well as the html tags.
+	// Supply your own head and body tags.	
 	class HTMLBuilder
 	{
 	public:
-		/// <summary>
-		/// Construct HTMLBuilder with default tab style of 2 spaces.
-		/// </summary>
+		// Construct HTMLBuilder with default tab style of 2 spaces.
 		HTMLBuilder()
 		{
 			tabStyle = "  ";
 		}
 
-		/// <summary>
-		/// Construct HTMLBuilder with a custom tab style.
-		/// </summary>
+		// Construct HTMLBuilder with a custom tab style.		
 		HTMLBuilder(const std::string& tabStyle)
 		{
 			this->tabStyle = tabStyle;
 		}
 		
-		/// <summary>
-		/// Get the full, properly formatted HTML document as a string.
-		/// </summary>
-		/// <returns>A string representing the HTML Document</returns>
+		// Get the full, properly formatted HTML document as a string.
+		// Returns a string representing the HTML Document
 		std::string toString() const
 		{
 			std::stringstream ss;
@@ -208,30 +184,22 @@ namespace HTML
 			return asString;
 		}
 
-		/// <summary>
-		/// Add a tag to the HTML document.
-		/// </summary>
-		/// <param name="tag"></param>
+		// Add a tag to the HTML document.		
 		void addTag(const Element& tag) { tags.push_back(tag); }
 
 	private:
-		/// <summary>
-		/// Vector containing all tags that are children of the html tag,
-		/// as well as their children, in order.
-		/// </summary>
+		// Vector containing all tags that are children of the html tag,
+		// as well as their children, in order.
 		std::vector<Element> tags;
 		
-		/// <summary>
-		/// The style of indentation.
-		/// </summary>
+		// The style of indentation.
 		std::string tabStyle;
 
 
-		/// <summary>
-		/// Strip all lines that have nothing other than whitespace on them from the string.
-		/// Modifies the original string, does not return anything.
-		/// </summary>
-		/// <param name="str">String to remove lines from.</param>
+		// Strip all lines that have nothing other than whitespace on them from the string.
+		// Modifies the original string, does not return anything.	
+		// Arguments:	
+		// 		str: String to remove lines from.
 		void stripBlankLines(std::string& str) const
 		{
 			std::istringstream iss(str);

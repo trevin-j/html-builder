@@ -56,7 +56,7 @@ You may use as many tabs or spaces as you desire. You may use any other characte
 When a document is created, it automatically adds the `<!DOCTYPE html>` tag, as well as the `<html>` and `</html>` tags.
 
 
-### Adding elements
+### Adding elements and attributes
 
 The suggested way of adding elements is to create the element objects for head and body and then add them to the document via `builder.addTag()`. This way you don't have to cram everything together.
 
@@ -68,7 +68,7 @@ To create a regular tag, you may use the following syntax:
 HTML::Element(bool requiresClosingTag, bool isInline, const std::string& tagName);
 ```
 
-where `requiresClosingTag` is a boolean that determines whether the tag should be closed with a `</tagName>` tag. `isInline` is a boolean that determines whether the tag should be rendered as an inline tag, like `<em>` or any other tag that is not a block tag. And `tagName` is the name of the tag, such as `p` or `h1`.
+Where `requiresClosingTag` is a boolean that determines whether the tag should be closed with a `</tagName>` tag. `isInline` is a boolean that determines whether the tag should be rendered as an inline tag, like `<em>` or any other tag that is not a block tag. And `tagName` is the name of the tag, such as `p` or `h1`.
 
 To create a bare text element, you may use the following syntax:
 
@@ -78,7 +78,7 @@ HTML::Element(const std::string& text);
 
 The `text` parameter is the text that will be rendered.
 
-For many HTML tags, you need to add attributes to the tag. For example, to add a `class` attribute to a tag, you may use the following syntax:
+For many HTML tags, you need to add attributes to the tag. For example, to add a `class` attribute with a value of `my-class` to a tag, you may use the following syntax:
 
 ```cpp
 HTML::Element div(true, true, "div");
@@ -110,6 +110,10 @@ div.addChild
         .addChild(HTML::Element("This is an important paragraph."))
 );
 ```
+
+### Retrieving HTML output
+
+Get a string containing the whole HTML document, fully formatted, and without extra whitespace by `HTML::HTMLBuilder::toString()`.
 
 ## Purpose
 

@@ -117,4 +117,4 @@ Get a string containing the whole HTML document, fully formatted, and without ex
 
 ## Purpose
 
-I developed this small library over the course of a couple days to assist me in my current development of a Markdown-to-HTML+CSS+JS converter. This converter is written in C++, and is intended to be used as a command-line utility. I am creating this converter to improve the output of my [learning-programming-with-python guide](https://github.com/trevin-j/learn-programming-with-python). This way I will not be limited to Jekyll themes, and I will be able to output my own web pages with full syntax hightlighting support without the need to add extra non-markdown syntax to code blocks. If you're curious about that converter, stay tuned.
+I developed this small library over the course of a couple days to assist me in my current development of a Markdown-to-HTML+CSS+JS converter. This converter is written in C++, and is intended to be used as a command-line utility. I am creating this converter to improve the output of my [learning-programming-with-python guide](https://github.com/trevin-j/learn-programming-with-python).

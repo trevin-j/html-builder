@@ -47,7 +47,7 @@ Optionally, you may specify the style of indentation like so:
 HTML::HTMLBuilder builder("    ");
 ```
 ...or...
-```
+```cpp
 HTML::HTMLBuilder builder('\t');
 ```
 

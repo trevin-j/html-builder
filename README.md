@@ -114,7 +114,3 @@ div.addChild
 ### Retrieving HTML output
 
 Get a string containing the whole HTML document, fully formatted, and without extra whitespace by `HTML::HTMLBuilder::toString()`.
-
-## Purpose
-
-I developed this small library over the course of a couple days to assist me in my current development of a Markdown-to-HTML+CSS+JS converter. This converter is written in C++, and is intended to be used as a command-line utility. I am creating this converter to improve the output of my [learning-programming-with-python guide](https://github.com/trevin-j/learn-programming-with-python).

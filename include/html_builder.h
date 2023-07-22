@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HTML_BUILDER_H
+#define HTML_BUILDER_H
 
 #include <stdexcept>
 #include <vector>
@@ -228,3 +229,5 @@ namespace HTML
         }
     };
 }
+
+#endif
